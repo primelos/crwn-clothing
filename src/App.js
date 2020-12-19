@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
 import HomePage from './pages/homePage'
-import HatsPage from './pages/hats'
+import ShopPage from './pages/shop';
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/hats' component={HatsPage} />
+        <Route path='/shop' component={ShopPage} />
       </Switch>
     </div>
    );
