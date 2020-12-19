@@ -1,15 +1,19 @@
 import React from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom'
 import HomePage from './pages/homePage'
-
+import HatsPage from './pages/hats'
 
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/hats' component={HatsPage} />
+      </Switch>
     </div>
-  );
+   );
 }
 
 export default App;
@@ -25,3 +29,8 @@ export default App;
 
 // to remove through terminal
 // rm -rf yarn.lock
+
+// update dependencies 
+// npm update -D
+// the n next command to fix the updates
+// npm audit fix 
