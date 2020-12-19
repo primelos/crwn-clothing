@@ -1,11 +1,13 @@
 import React from 'react'
 import './menu-item.styles.scss'
+import { withRouter } from 'react-router-dom'
 
 
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match}) => {
 
-const MenuItem = ({ title, imageUrl, id, size }) => {
+  
     return (
-      <div className={`${size} menu-item`} key={id}>
+      <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
         <div
           className="background-image"
           style={{ backgroundImage: `url(${imageUrl})` }}
@@ -18,4 +20,6 @@ const MenuItem = ({ title, imageUrl, id, size }) => {
     );
 }
 
-export default MenuItem
+export default withRouter(MenuItem)
+
+// withRouter gives access to history in props field -> props.history or destructure-> history, match
