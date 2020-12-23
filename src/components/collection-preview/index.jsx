@@ -7,7 +7,7 @@ import CollectionItem from '../collection-item'
 
 
 const CollectionPreview = ({ title, items }) => {
-  console.log(items);
+  console.log('arrays or topics', items);
 
 
 

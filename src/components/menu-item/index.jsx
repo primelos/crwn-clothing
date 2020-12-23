@@ -1,5 +1,6 @@
 import React from 'react'
 import './menu-item.styles.scss'
+import { withRouter } from "react-router-dom";
 
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match}) => {
@@ -19,6 +20,6 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match}) => {
     );
 }
 
-export default MenuItem
+export default withRouter(MenuItem)
 
-// withRouter gives access to history in props field -> props.history or destructure-> history, match
+// withRouter gives access to history in props field -> props.history or destructure-> ({ history, match })
