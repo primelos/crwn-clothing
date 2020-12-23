@@ -1,8 +1,8 @@
-import React from 'react'
-import './header.styles.scss'
-import { Link } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assests/crown.svg'
-import { auth } from '../../firebase/firebase.utils'
+import React from "react";
+import "./header.styles.scss";
+import { Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assests/crown.svg";
+import { auth } from "../../firebase/firebase.utils";
 
 const Header = ({ currentUser }) => {
   return (
@@ -22,11 +22,13 @@ const Header = ({ currentUser }) => {
             SIGN OUT
           </div>
         ) : (
-          <Link to="/signin" className="option">SIGN IN</Link>
+          <Link to="/signin" className="option">
+            SIGN IN
+          </Link>
         )}
       </div>
     </div>
   );
-}
+};
 
-export default Header
+export default Header;
