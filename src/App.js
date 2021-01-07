@@ -1,69 +1,76 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
+import "./App.css";
 
-import './App.css';
-
-import HomePage from './pages/homePage'
-import ShopPage from './pages/shop';
+import HomePage from "./pages/homePage";
+import ShopPage from "./pages/shop";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up";
-import Header from './components/header'
+import Header from "./components/header";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from './redux/user/user.actions'
+import { setCurrentUser } from "./redux/user/user.actions";
 
-class App extends Component{
+class App extends Component {
+  unsubscribeFromAuth = null;
 
-  unsubscribeFromAuth = null
+  componentDidMount() {
+    const { setCurrentUser } = this.props;
 
-
-  componentDidMount(){
-    const { setCurrentUser } = this.props
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-     if(userAuth) {
-       const userRef = await createUserProfileDocument(userAuth)
-
-       userRef.onSnapshot(snapShot => {
-         
-           setCurrentUser({
-             id: snapShot.id,
-             ...snapShot.data()
-           })
-         
-        })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
         
-     }
-     setCurrentUser({ currentUser: userAuth });
-    })
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      }
+      console.log(userAuth);
+      setCurrentUser(userAuth);
+    });
   }
-  componentWillUnmount(){
-    this.unsubscribeFromAuth()
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
   }
 
-
-  render(){
+  render() {
+    const { currentUser } = this.props
     return (
       <div className="App">
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInAndSignUpPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
+          {/* <Route exact path="/signin" component={SignInAndSignUpPage} /> */}
         </Switch>
       </div>
     );
-
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
 
-
-export default connect(null, mapDispatchToProps)(App);
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // installed
 // npm i
@@ -76,9 +83,9 @@ export default connect(null, mapDispatchToProps)(App);
 // to remove through terminal
 // rm -rf yarn.lock
 
-// update dependencies 
+// update dependencies
 // npm update -D
 // the n next command to fix the updates
-// npm audit fix 
+// npm audit fix
 
 // npm i redux redux-logger react-redux
