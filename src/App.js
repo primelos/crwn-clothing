@@ -94,3 +94,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // npm i redux redux-logger react-redux  manage state
 // npm i reselect    for memoization
+// npm i redux-persist    for saving state to local storage 
