@@ -97,3 +97,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // npm i redux-persist    for saving state to local storage 
 // npm install lodash.memoize     used to add memoizing to selectCollection and collectionUrlParam
 // npm i react-stripe-checkout
+// heroku login
+// heroku create crwn-cfv-clothing --buildpack https://github.com/mars/create-react-app-buildpack.git
+// git push heroku master
