@@ -2,14 +2,8 @@ import React from "react";
 import "./collection-preview.styles.scss";
 import CollectionItem from '../collection-item'
 
-
-
-
-
 const CollectionPreview = ({ title, items }) => {
   console.log('arrays or topics', title, items);
-
-
 
   return (
     <div className="collection-preview">

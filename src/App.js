@@ -8,7 +8,7 @@ import "./App.css";
 import HomePage from "./pages/homePage";
 import ShopPage from "./pages/shop";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up";
-import CheckoutPage from './pages/checkout'
+import CheckoutPage from "./pages/checkout";
 
 import Header from "./components/header";
 
@@ -34,7 +34,7 @@ class App extends Component {
           });
         });
       }
-      console.log(userAuth);
+      // console.log(userAuth);
       setCurrentUser(userAuth);
     });
   }
@@ -48,9 +48,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/checkout" component={CheckoutPage} />
+          <Route exact path="/"         component={HomePage}     />
+          <Route       path="/shop"     component={ShopPage}     />
+          <Route exact path="/checkout" component={CheckoutPage} />
 
           <Route
             exact
@@ -96,3 +96,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // npm i reselect    for memoization
 // npm i redux-persist    for saving state to local storage 
 // npm install lodash.memoize     used to add memoizing to selectCollection and collectionUrlParam
+// npm i react-stripe-checkout
