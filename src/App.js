@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from 'reselect'
-
 import "./App.css";
 
 import HomePage from "./pages/homePage";
@@ -16,6 +15,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from './redux/user/user.selectors'
 
+// LOOK AT LESSON 174 TO ADD DATA TO FIRESTORE ***
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -92,7 +92,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // the n next command to fix the updates
 // npm audit fix
 
-// npm i redux redux-logger react-redux  manage state
+// npm i redux redux-logger react-redux  -> manage state
 // npm i reselect    for memoization
 // npm i redux-persist    for saving state to local storage 
 // npm install lodash.memoize     used to add memoizing to selectCollection and collectionUrlParam
