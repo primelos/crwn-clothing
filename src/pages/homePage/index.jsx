@@ -7,7 +7,7 @@ import { HomePageContainer } from './homepage.styles'
 const HomePage = (props) => {
   // console.log(props)
     return (
-      <HomePageContainer className="homepage">
+      <HomePageContainer>
         <Directory />
         
       </HomePageContainer>
