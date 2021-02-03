@@ -29,3 +29,13 @@ export const selectCollection = (collectionUrlParam) =>
     // Code needed when  (line 4 and 30) when the shop_data was a array
     // collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])
   );
+
+  export const selectIsCollectionFetching = createSelector(
+      [selectShop],
+      shop => shop.isFetching
+    )
+  
+  export const selectIsCollectionsLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections
+  )
