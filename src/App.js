@@ -100,4 +100,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // heroku login
 // heroku create crwn-cfv-clothing --buildpack https://github.com/mars/create-react-app-buildpack.git
 // git push heroku master
-// 
+// npm i redux-thunk -> allows us to handle asynchronous event handling and firing multiple actions -> middleware that allows us to fire functions
