@@ -14,6 +14,7 @@ import Header from "./components/header";
 // import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 // import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from './redux/user/user.selectors'
+import { checkUserSession } from "./redux/user/user.actions";
 
 // LOOK AT LESSON 174 TO ADD DATA TO FIRESTORE ***
 
@@ -21,6 +22,8 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession()
     // const { setCurrentUser } = this.props;
 
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -70,7 +73,11 @@ const mapStateToProps = createStructuredSelector ({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // installed
 // npm i
