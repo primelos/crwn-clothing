@@ -8,7 +8,7 @@ const StripeCheckoutButton = ({ price }) => {
   
   // this would take the token to pass to the backend to create the charge
   const onToken = token => {
-    console.log(token)
+    console.log("token", token);
     alert('payment successful')
   }
 

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import CollectionsOverviewContainer from "../../components/collections-overview/collections.overview.container";
@@ -23,44 +23,20 @@ import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 // const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview)
 // const CollectionPageWithSpinner = WithSpinner(CollectionPage)
 
-class ShopPage extends Component {
+const ShopPage = ({ fetchCollectionsStart, match }) => {
   // state = {
   //   loading: true,
   // };
   // unsubscribeFromSnapshot = null;
+  useEffect(() => {
+    
+   fetchCollectionsStart()
 
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props
-    fetchCollectionsStart()
-    // const { updateCollections } = this.props;
-    // const collectionRef = firestore.collection("collections");
-
-    //      using firebase observable style object
-    // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
-    //   async (snapshot) => {
-    //     const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //     updateCollections(collectionsMap);
-    //     console.log("collectionsMap", collectionsMap);
-    //     this.setState({ loading: false });
-    //   }
-    // );
-    //      OR using a Promise
-    // collectionRef.get().then(async (snapshot) => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-    //   console.log("snapshot", collectionsMap);
-    //   updateCollections(collectionsMap)
-    //   this.setState({ loading: false })
-    // })
-    //      OR using Fetch .... it was very nested
-    // fetch(`https://firestore.googleapis.com/v1/projects/crwn-db-fbe5a/databases/(default)/documents/collections`)
-    // .then(res => res.json())
-    // .then(collections => console.log('test',collections.documents))
-  }
-
+  });
+  
   
 
-  render() {
-    const { match } = this.props;
+  
     // const { loading } = this.state
     return (
       <div className="shop-page">
@@ -75,7 +51,7 @@ class ShopPage extends Component {
         />
       </div>
     );
-  }
+  
 }
 
 
