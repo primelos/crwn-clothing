@@ -2,5 +2,6 @@
   "cSpell.words": [
     "FIRESTORE",
     "signin"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
