@@ -161,7 +161,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // npm i react-stripe-checkout
 // heroku login
 // heroku create crwn-cfv-clothing --buildpack https://github.com/mars/create-react-app-buildpack.git
-// git push heroku master
+// git push heroku clothing
 // npm i redux-thunk -> allows us to handle asynchronous event handling and firing multiple actions -> middleware that allows us to fire functions
 
 
