@@ -15,10 +15,8 @@ import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 // } from "../../redux/shop/shop.selectors";
 // import { createStructuredSelector } from 'reselect'
 
-// import WithSpinner from "../../components/with-spinner"; 
+// import WithSpinner from "../../components/with-spinner";
 // import { removeItem } from "../../redux/cart/cart.actions";
-
-
 
 // const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview)
 // const CollectionPageWithSpinner = WithSpinner(CollectionPage)
@@ -29,35 +27,27 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   // };
   // unsubscribeFromSnapshot = null;
   useEffect(() => {
-    
-   fetchCollectionsStart()
+    fetchCollectionsStart();
+  }, []);
 
-  });
-  
-  
-
-  
-    // const { loading } = this.state
-    return (
-      <div className="shop-page">
-        <Route
-          exact
-          path={`${match.path}`}
-          component={CollectionsOverviewContainer}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
-          component={CollectionPageContainer}
-        />
-      </div>
-    );
-  
-}
-
-
+  // const { loading } = this.state
+  return (
+    <div className="shop-page">
+      <Route
+        exact
+        path={`${match.path}`}
+        component={CollectionsOverviewContainer}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        component={CollectionPageContainer}
+      />
+    </div>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);

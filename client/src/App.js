@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import "./App.css";
+import { GlobalStyle } from "./global.styles";
 
 import HomePage from "./pages/homePage";
 import ShopPage from "./pages/shop";
@@ -10,7 +10,7 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up";
 import CheckoutPage from "./pages/checkout";
 
 import Header from "./components/header";
-
+import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 // import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 // import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -18,38 +18,37 @@ import { checkUserSession } from "./redux/user/user.actions";
 
 // LOOK AT LESSON 174 TO ADD DATA TO FIRESTORE ***
 
-const App = ({ checkUserSession, currentUser }) => {
-
+const App = ({ checkUserSession, currentUser, collec }) => {
+  console.log(collec);
   useEffect(() => {
-    checkUserSession()
-  }, [checkUserSession])
-  
-  
+    checkUserSession();
+  }, [checkUserSession]);
 
-     return (
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
+  return (
+    <div className="App">
+      <GlobalStyle />
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
 
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-            }
-          />
-          {/* <Route exact path="/signin" component={SignInAndSignUpPage} /> */}
-        </Switch>
-      </div>
-    );
-  }
-
+        <Route
+          exact
+          path="/signin"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+          }
+        />
+        {/* <Route exact path="/signin" component={SignInAndSignUpPage} /> */}
+      </Switch>
+    </div>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collec: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -88,7 +87,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 //     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 //     //   if (userAuth) {
 //     //     const userRef = await createUserProfileDocument(userAuth);
-        
+
 //     //     userRef.onSnapshot((snapShot) => {
 //     //       setCurrentUser({
 //     //         id: snapShot.id,
@@ -156,7 +155,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // npm i redux redux-logger react-redux  -> manage state
 // npm i reselect    for memoization
-// npm i redux-persist    for saving state to local storage 
+// npm i redux-persist    for saving state to local storage
 // npm install lodash.memoize     used to add memoizing to selectCollection and collectionUrlParam
 // npm i react-stripe-checkout
 // heroku login
@@ -164,9 +163,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 // git push heroku clothing
 // npm i redux-thunk -> allows us to handle asynchronous event handling and firing multiple actions -> middleware that allows us to fire functions
 
-
 // started back-end
 // mkdir client -> made a new folder
 // mv ./* ./client   -> move everything into folder client
-// open .     -> opens computer directory 
+// open .     -> opens computer directory
 // npm i -g nodemon
